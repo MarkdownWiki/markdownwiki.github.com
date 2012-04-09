@@ -32,4 +32,4 @@ We have to be able to make money somehow, and we know that everyone hates ads, a
 
 ##Stay Tuned!
 
-We're actively developing MarkdownWiki so that we can get it out to users, so be sure to stay tuned for updates on our progress. We'll be updating this blog as we go with the progress we're making, and might even look for your input on features and functionality. If youd like to receive updates, [you can signup here](http://signup.markdownwiki.com). We'll send you things like updates and even early access and beta testing invites so that you can help us out!
+We're actively developing MarkdownWiki so that we can get it out to users, so be sure to stay tuned for updates on our progress. We'll be updating this blog as we go with the progress we're making, and might even look for your input on features and functionality. If youd like to receive updates, [you can signup here](http://eepurl.com/kFHuL). We'll send you things like updates and even early access and beta testing invites so that you can help us out!
