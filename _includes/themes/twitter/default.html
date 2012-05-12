@@ -6,7 +6,8 @@
     {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
     <meta name="author" content="{{ site.author.name }}">
 	<meta name="google-site-verification" content="P5c0EWIUFaRyjwQFqKXgaz6qx7-sUAx5sFGQsta-nuw" />
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <meta name="google-site-verification" content="P5c0EWIUFaRyjwQFqKXgaz6qx7-sUAx5sFGQsta-nuw" />
+	<!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -31,6 +32,7 @@
         <div class="container">
           <a class="brand" href="{{ HOME_PATH }}">{{ site.title }}</a>
           <ul class="nav">
+          	<li><a href="{{BASE_PATH}}register.html">Register</a></li>
             {% assign pages_list = site.pages %}
             {% assign group = 'navigation' %}
             {% include JB/pages_list %}
