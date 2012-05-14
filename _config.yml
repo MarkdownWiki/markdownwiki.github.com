@@ -81,7 +81,7 @@ JB :
   comments :
     provider : disqus
     disqus :
-      short_name : markdownwikiblog
+      short_name : markdownwiki
     livefyre :
       site_id : 123
     intensedebate :
