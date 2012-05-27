@@ -7,7 +7,7 @@ tagline:
 <div class="alert alert-success">
   <h4 class="alert-heading">Welcome!</h4> Want to know more about MarkdownWiki and receive updates on our progress? <a href="{{BASE_PATH}}register.html">Click here!</a>
 </div>
-<div class="row-fluid">
+<div class="row">
 	<div class="span8">
 		<h1>{{site.posts[0].title}}</h1>
 		<hr>
@@ -15,12 +15,16 @@ tagline:
 		<a href="{{site.posts[0].url}}">Read more and comment</a>
 	</div>
 	<div class="span4">
-		<h3>Blog Posts</h3>
-		<ul class="nav nav-pills nav-stacked">
-  		{% for post in site.posts %}
-    		<li><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  		{% endfor %}
-		</ul>
+		<div class="row">
+			<div class="span4">
+				<h3>Blog Posts</h3>
+				<ul class="nav nav-pills nav-stacked">
+  				{% for post in site.posts %}
+    				<li><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+  				{% endfor %}
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 
