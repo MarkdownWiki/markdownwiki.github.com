@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>MarkdownWiki Blog</title>
+ <link href="http://blog.markdownwiki.com/atom.xml" rel="self"/>
+ <link href="http://blog.markdownwiki.com"/>
+ <updated>2013-02-09T12:58:40-08:00</updated>
+ <id>http://blog.markdownwiki.com</id>
+ <author>
+   <name>Sean McGary</name>
+   <email>seanmcgary@markdownwiki.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>Improving Wiki Editing with Markdown</title>
+   <link href="http://blog.markdownwiki.com/2012/05/25/improving-wiki-editing-with-markdown"/>
+   <updated>2012-05-25T00:00:00-07:00</updated>
+   <id>http://blog.markdownwiki.com/2012/05/25/improving-wiki-editing-with-markdown</id>
+   <content type="html">&lt;p&gt;The other day, I was tasked with updating a page on a wiki. This wiki happened to be hosted using the classic MediaWiki platform. The page I was editing involved me creating a table for some test data that I had gathered. Immediately I found myself googling for the proper syntax for creating a table in the (archaic) wiki syntax. If the syntax was parsed in Markdown or pure HTML, creating a table would have been MUCH easier and wouldn&amp;#8217;t have required me to look up the proper syntax.&lt;/p&gt;
+
+&lt;h2 id='improving_wiki_editing'&gt;Improving Wiki Editing&lt;/h2&gt;
+
+&lt;p&gt;For the longest time, when you edit a wiki, be it on a MediaWiki platform, confluence, or even on Github using markdown, you are always editing a plain text document that has no syntax highlighting to help you decipher what you are typing. With MarkdownWiki, we are about to change ALL of that. Here is a screenshot of the MarkdownWiki editor:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='/assets/markdownwiki_editor_preview.png'&gt;&lt;img src='/assets/markdownwiki_editor_preview.png' /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;First thing to notice is that MarkdownWiki provides you with a complete, syntax-highlighted editor. This allows users to see exactly what they are creating and makes it much easier to catch errors and makes creating and editing pages much easier.&lt;/p&gt;
+
+&lt;p&gt;If you are a javascript developer, then you are probably familiar with &lt;a href='http://jsfiddle.net'&gt;JSFiddle&lt;/a&gt; and its built in editor. The editor provided to you by MarkdownWiki is very similar - both use the &lt;a href='https://github.com/marijnh/CodeMirror2'&gt;CodeMirror&lt;/a&gt; library, providing an editor that is browser agnostic.&lt;/p&gt;
+
+&lt;h2 id='if_it_aint_broke_dont_fix_it'&gt;If it ain&amp;#8217;t broke, don&amp;#8217;t fix it&lt;/h2&gt;
+
+&lt;p&gt;Since the launch of Github, the &lt;a href='http://daringfireball.net/projects/markdown/'&gt;Markdown&lt;/a&gt; syntax has caught on real fast. So fast that Github created their &lt;a href='http://github.github.com/github-flavored-markdown/'&gt;own flavor of markdown&lt;/a&gt;. To keep make it so that you don&amp;#8217;t need to potentially learn another &amp;#8220;flavor&amp;#8221; of the Markdown syntax, we have adopted the Github flavor of Markdown. To stay consistent with their syntax, that means we had to find a parsing library that was compatible. Luckily, other people had the same idea as us, and have begun to develop compatible libraries for all the popular languages. Github, being a site based on various Ruby libraries, uses the &lt;a href='https://github.com/tanoku/redcarpet'&gt;redcarpet&lt;/a&gt; library to convert their Markdown to valid HTML. As it turns out, their parser is built around the C-based library, (sundown)&lt;span&gt;https://github.com/tanoku/sundown&lt;/span&gt;. Since MarkdownWiki is built on top of &lt;a href='http://nodejs.org'&gt;NodeJS&lt;/a&gt;, it made sense to find a library compatible with Node. Thankfully we were able to find just that; a Markdown libarry that wraps sundown, built for NodeJS called &lt;a href='https://github.com/benmills/robotskirt'&gt;robotskirt&lt;/a&gt;. Why it&amp;#8217;s called that, I have no idea, but it works beautifully and works great with the Github flavored markdown.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#8217;s a preview of what a typical wiki page will look like (the sample content is the example Markdown from &lt;a href='http://github.github.com/github-flavored-markdown/'&gt;Github&amp;#8217;s Markdown documentation&lt;/a&gt;):&lt;/p&gt;
+
+&lt;p&gt;&lt;a href='/assets/markdownwiki_page_example.png'&gt;&lt;img src='/assets/markdownwiki_page_example.png' /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id='more_syntax_highlighting'&gt;More syntax highlighting!&lt;/h2&gt;
+
+&lt;p&gt;The icing on the cake here is the added support for code syntax highlighting within your markdown. Thanks to &lt;a href='http://softwaremaniacs.org/soft/highlight/en/'&gt;highlight.js&lt;/a&gt; MarkdownWiki supports 46 languages out of the box. Heres a quick look at how to take advantage of it:&lt;/p&gt;
+&lt;pre&gt;
+```javascript
+var foobar = function(){
+	console.log(&quot;this is a function&quot;);
+};
+```
+&lt;/pre&gt;
+&lt;p&gt;Simply provide the name of the language the block of code is, and highlight.js will choose the correct highlighting stylesheet.&lt;/p&gt;
+
+&lt;h2 id='some_editor_features'&gt;Some editor features&lt;/h2&gt;
+
+&lt;p&gt;One of the major gripes I have about the state of current wiki editors is that it is a real pain in the ass to preview the changes that you are making. To preview anything, for example in MediaWiki, you are brought to an entirely new page in either a new window or new tab. I don&amp;#8217;t like this as it breaks the flow of editing the page. Our solution to this is to show you the preview EXACTLY where it is going to be - on the page right in front of you. Through the magic of javascript, when you click the &amp;#8220;preview&amp;#8221; button, your changes in the editor are parsed into HTML and displayed to you as ig you just saved the page. No navigating to another page or tab. Everything is presented live right in front of you. Don&amp;#8217;t like the changes you just made? Thats okay. Simply press the &amp;#8220;Discard Changes&amp;#8221; button and you are rolled back to the last saved state. Satisfied with your changes? Click the &amp;#8220;Save&amp;#8221; button and your content is saved and then updated with in front of you without refreshing the page or taking you away from the editor.&lt;/p&gt;
+
+&lt;p&gt;We think that this interface will greatly improve the user experience, making it easier than ever to create and edit your wikis. If you disagree with us, we would love to hear why. If you absolutely love what we are doing, we also want to hear it! We are here to provide YOU with what will be easiest for YOU.&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Welcome to MarkdownWiki</title>
+   <link href="http://blog.markdownwiki.com/2012/04/09/welcome-to-markdownwiki"/>
+   <updated>2012-04-09T00:00:00-07:00</updated>
+   <id>http://blog.markdownwiki.com/2012/04/09/welcome-to-markdownwiki</id>
+   <content type="html">&lt;p&gt;&lt;a href='http://markdownwiki.com'&gt;MarkdownWiki&lt;/a&gt; allows users to create wikis in the cloud, using the markdown language instead of traditional wiki-syntax. As a markup language, &lt;a href='http://daringfireball.net/projects/markdown/'&gt;markdown&lt;/a&gt; has exploded over the past few years thanks to sites such as Github that use it for parsing readme files in repositories. Even this blog post is written in markdown!&lt;/p&gt;
+
+&lt;p&gt;After immersing myself in markdown for the last few years, I went to edit a page on a personal wiki that was using MediaWiki, and felt completely lost. Over the last decade, wiki-syntax hasnt changed all that much. Popular wikis, open source and enterprise, include the likes of platforms such as MediaWiki and Atlassian&amp;#8217;s Confluence. If you&amp;#8217;ve ever used either, or both of these platforms, you&amp;#8217;ll know that theyre both very different from one another. One common trait is that they both require that you host them on your own machines and require setup and configuration. For someone (or community) that wants a small wiki to host some pages, this makes things a great hassle. In the case of Confluence, they have a hosted option, but it costs upward of $50/month, and thats to start with only 10 users. For a small group of people, that could be a lot of money.&lt;/p&gt;
+
+&lt;h2 id='going_freemium'&gt;Going &amp;#8220;Freemium&amp;#8221;&lt;/h2&gt;
+
+&lt;p&gt;As a developer, one service that I could not live without is Github. I use it everyday for hosting my projects and for collaborating with others on projects. It opens up a world of possibilities, allowing users to easily collaborate contribute to other open source (or even private, closed-source) projects.&lt;/p&gt;
+
+&lt;p&gt;When I look at whats available for popular wiki platforms I see a few common things:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;They require you to install them on your own servers and manage them.&lt;/li&gt;
+
+&lt;li&gt;Hosted options can cost a lot of money for a small number of users.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;MarkdownWiki is here to fix that. Freemium services such as Github, Pandora, and Dropbox have proven that its possible to provide a quality, easy to use, free service to its users, while offering premium features to the users that want to pay to enrich their experience even more.&lt;/p&gt;
+
+&lt;h2 id='free_wikis_for_everyone'&gt;Free Wikis for Everyone!&lt;/h2&gt;
+
+&lt;p&gt;From the beginning, it will be free for users to signup and create wikis. You&amp;#8217;ll be able to add users as collaborators to your wikis. The only limitation that will be in place will be a limit on the space you have for file/attachments that you can include in your wikis (for now atleast).&lt;/p&gt;
+
+&lt;h2 id='private_wikis'&gt;Private Wikis&lt;/h2&gt;
+
+&lt;p&gt;We have to be able to make money somehow, and we know that everyone hates ads, and we&amp;#8217;re not about to &lt;a href='http://facebook.com'&gt;sell your private information to other companies&lt;/a&gt; to generate soem quick cash. Instead, we&amp;#8217;re going to offer private wikis. We havent decided on what aspect to charge for them on though. Should we could charge based on the number of wikis you want, number of collaborators, upload space, etc. We would love to hear your input though, so feel free to respond in the comments below with what you would be willing to pay for.&lt;/p&gt;
+
+&lt;h2 id='stay_tuned'&gt;Stay Tuned!&lt;/h2&gt;
+
+&lt;p&gt;We&amp;#8217;re actively developing MarkdownWiki so that we can get it out to users, so be sure to stay tuned for updates on our progress. We&amp;#8217;ll be updating this blog as we go with the progress we&amp;#8217;re making, and might even look for your input on features and functionality. If youd like to receive updates, &lt;a href='http://markdownwiki.com/register.html'&gt;you can signup here&lt;/a&gt;. We&amp;#8217;ll send you things like updates and even early access and beta testing invites so that you can help us out!&lt;/p&gt;</content>
+ </entry>
+ 
+ 
+</feed>
